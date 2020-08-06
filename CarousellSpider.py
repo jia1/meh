@@ -50,6 +50,7 @@ initial_state_end_index = -len('</script>')
 def get_carousell_listing_url(collection_id, product_id):
     return f'https://sg.carousell.com/api-service/related-listing/?collection_id={collection_id}&country_id=1880251&locale=en&product_id={product_id}'
 
+
 #####################################################
 ################# CAROUSELL SPIDER ##################
 #####################################################
