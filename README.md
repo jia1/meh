@@ -16,9 +16,9 @@ I am not aware of any ongoing projects similar to this. I am open to volunteerin
 
 ### Prerequisites
 
-- brew
 - Python 3.6 or higher (I use Python 3.8)
-- pip
+- `pip`
+- `brew`
 
 ### Setup instructions
 
@@ -41,11 +41,9 @@ Install the following `brew` packages:
 brew install pkg-config
 brew install opencv@2
 ```
-
 The steps below may not help if you are installing `opencv@4`.
 
 Add the following lines to your `~/.bash_profile` where applicable:
-
 ```
 # For compilers to find opencv@2 you may need to set:
 export LDFLAGS="-L/usr/local/opt/opencv@2/lib"
