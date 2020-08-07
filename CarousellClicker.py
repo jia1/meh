@@ -27,8 +27,6 @@ search_terms = {
 #####################################################
 # Do not change unless you know what you are doing
 download_directory = 'CarousellClicker'
-initial_state_start_index = len('<script>window.initialState=')
-initial_state_end_index = -len('</script>')
 load_more_button_xpath = '//button[text()="Load more"]'
 wait_in_seconds = 10
 
@@ -87,6 +85,8 @@ def scroll_down(browser):
 #####################################################
 ################# CAROUSELL SPIDER ##################
 #####################################################
+Path(download_directory).mkdir(parents=True, exist_ok=True)
+
 illegal_items = []
 browser = webdriver.Chrome()
 
@@ -112,7 +112,6 @@ for search_term in search_terms:
         for i in range(len(imgs_to_download)):
             img_url = imgs_to_download[i]
             download_file_path = f'{download_directory}/{i}.jpg'
-            Path(download_directory).mkdir(parents=True, exist_ok=True)
             download_image(img_url, download_file_path)
             if is_illegal(download_file_path, search_terms[search_term]):
                 illegal_items.append(img_url)
