@@ -55,8 +55,8 @@ def get_carousell_search_url(search_term):
 def is_initial_state(line):
     return line.lstrip().startswith('<script>window.initialState=')
 
-def is_product_img(img_url):
-    return img_url.startswith('https://media.karousell.com/media/photos/products/')
+def is_product_img(image_url):
+    return image_url.startswith('https://media.karousell.com/media/photos/products/')
 
 # https://www.hackerearth.com/practice/notes/praveen97uma/crawling-a-website-that-loads-content-using-javascript-with-selenium-webdriver-in-python
 def page_down(browser, page_downs):
@@ -91,7 +91,7 @@ illegal_items = []
 browser = webdriver.Chrome()
 
 for search_term in search_terms:
-    imgs_to_download = []
+    images_to_download = []
     try:
         browser.get(get_carousell_search_url(search_term))
         browser = page_down(browser, 4) # Arbitrary
@@ -101,20 +101,20 @@ for search_term in search_terms:
         load_more_button.click()
         time.sleep(wait_in_seconds)
         browser = page_down(browser, 6) # Arbitrary
-        for img in browser.find_elements_by_tag_name('img'):
-            src = img.get_attribute('src')
-            if is_product_img(src):
-                imgs_to_download.append(src)
+        for image in browser.find_elements_by_tag_name('img'):
+            image_url = image.get_attribute('src')
+            if is_product_img(image_url):
+                images_to_download.append(image_url)
     except TimeoutException:
         print('Timed out.')
-    print(imgs_to_download) # Remove when not needed
-    if imgs_to_download:
-        for i in range(len(imgs_to_download)):
-            img_url = imgs_to_download[i]
+    print(images_to_download) # Remove when not needed
+    if images_to_download:
+        for i in range(len(images_to_download)):
+            image_url = images_to_download[i]
             download_file_path = f'{download_directory}/{i}.jpg'
-            download_image(img_url, download_file_path)
+            download_image(image_url, download_file_path)
             if is_illegal(download_file_path, search_terms[search_term]):
-                illegal_items.append(img_url)
+                illegal_items.append(image_url)
 
 browser.quit()
 print(illegal_items)

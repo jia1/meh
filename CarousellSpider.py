@@ -96,7 +96,7 @@ class CarousellSpider(scrapy.Spider):
                         download_file_path = f'{download_directory}/0.jpg'
                         Path(download_directory).mkdir(parents=True, exist_ok=True)
                         download_image(thumbnail_url, download_file_path)
-                        if is_illegal(download_file_path, response.meta.get('illegal_entities')):
+                        if is_illegal(download_file_path, response.meta['illegal_entities']):
                             CarousellSpider.custom_settings['illegal_items'].append({
                                 'url': get_carousell_listing_url(collection_id, listing_id),
                                 'image_url': thumbnail_url
