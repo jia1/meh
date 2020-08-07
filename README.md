@@ -57,5 +57,11 @@ Run the `predict` convenience script to check if your installation is correct:
 ```
 . predict <ANY IMAGE LOCATED IN meh/>
 ```
-
 Done.
+
+### Thank you
+
+- Darknet YOLO
+- requests
+- Scrapy
+- selenium
